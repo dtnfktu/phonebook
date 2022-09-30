@@ -1,4 +1,4 @@
-
+from colorama import *
 
 def check_numbers(number:str)->str:
     '''Проверка на цифры (не более 11 цифр, не допускает ввода пустой строки)'''
@@ -8,9 +8,9 @@ def check_numbers(number:str)->str:
             if int(n)<100000000000:
                 return n
             else:
-                print('Вы ввели количество цифр больше возможного! ')
+                print(Fore.RED + 'Вы ввели количество цифр больше возможного! '+ Style.RESET_ALL)
         except ValueError:
-            print('Неверно! Это не номер телефона! Вводите только цифры без пробелов!')
+            print(Fore.RED + 'Неверно! Это не номер телефона! Вводите только цифры без пробелов!' + Style.RESET_ALL)
 
 def check_alpha(name:str)->str:
     '''Проверка на буквы (не допускает ввода пустой строки)'''
@@ -20,9 +20,9 @@ def check_alpha(name:str)->str:
             if a.isalpha():
                 return a
             else:
-                print('Вы ввели символы отличные от букв ')
+                print(Fore.RED + 'Вы ввели символы отличные от букв '+ Style.RESET_ALL)
         except ValueError:
-            print('Неверно!')
+            print(Fore.RED + 'Неверно!'+ Style.RESET_ALL)
 
 def record_length(length:str)->str:
     '''Проверка длины вводимой строки и тут же проверка на пустую строку'''
@@ -30,10 +30,10 @@ def record_length(length:str)->str:
         try:
             l = input(length)
             if len(l)==0:
-                print('Вы ничего не ввели!')
+                print(Fore.RED + 'Вы ничего не ввели!'+ Style.RESET_ALL)
             elif len(l)<40:
                 return l
             else:
-                print('Вы ввели слишком много символов ')
+                print(Fore.RED + 'Вы ввели слишком много символов '+ Style.RESET_ALL)
         except ValueError:
-            print('Неверно! Повторите ввод!')
+            print(Fore.RED + 'Неверно! Повторите ввод!'+ Style.RESET_ALL)
