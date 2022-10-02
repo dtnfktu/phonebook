@@ -1,31 +1,52 @@
-import init_data as id
-import view
-import work_with_txt
+
+import operations as o
+import user_interface as ui
+import time
+import log
 
 def book():
+    ui.hello()
     while True:
-        print('Список команд: \n 1 - добавить контакт \n 2 - удалить контакт \n 3 - посмотреть список контактов \n 4 - найти номер по имени \n 5 - завершить работу \n')
-        command = int(input('Введите номер команды: '))
-        if command == 1:
-            a = view.get_name()
-            b = view.get_number()
-            id.phone_number(a, b)
-            book_new = id.get_data()
-            work_with_txt.save_phone_number(book_new)
-            print('Данные сохранены \n')                
+        command=ui.phone_menu()
+        if command==1:
+            o.print_phone_book(o.t)
+            log.log('Просмотр списка контактов','успешно')
+            time.sleep(3)
         elif command == 2:
-            x = view.search_contact()
-            work_with_txt.del_phone_number(x)
-            print('Данные удалены \n')  
+            cont=ui.search()
+            contact=o.search_contact(cont)
+            if contact == '':
+                ui.error()
+                time.sleep(2)
+                book()
+            else:
+                time.sleep(2)
+                c=ui.search_submenu()
+            if c==1:
+                log.log('Удаление контакта',f'{contact}')
+                o.del_phone_number(contact)
+            else:
+                new_contact=ui.input_new_contact()
+                o.replace_phone_contact(contact,new_contact)
+                log.log(f'Контакт {contact}',f'Изменен на {new_contact}')
         elif command == 3:
-            print('Телефонная книга: \n')
-            work_with_txt.look_phone_book()
+            contact=ui.input_new_contact()
+            o.save_phone_number(contact)
+            log.log(f'Добавлен контакт',f'{contact}')
         elif command == 4:
-            x = view.search_contact()
-            print('Данные по вашему запросу: \n')
-            work_with_txt.search_view_number(x)
+            c=ui.recording_database()
+            if c==1:
+                o.export_import(o.c,o.t)
+                time.sleep(2)
+                ui.success()
+                log.log('Экспорт БД из contacts.txt','В файл contacts.csv ')
         elif command == 5:
-            print('Работа завершена')
-            break
+            c=ui.recording_database()
+            if c==1:
+                o.export_import(o.t,o.c)
+                time.sleep(2)
+                ui.success()
+                log.log('Экспорт БД из contacts.csv','В файл contacts.txt ')
         else:
-            print('Ошибка')
+            ui.by()
+            break
