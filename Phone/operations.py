@@ -21,7 +21,7 @@ def search_contact(contact):
     Ищет контакт по запросу
     """
     with open(t,'r', encoding='utf-8') as f:
-        for line in f: 
+        for line in f:
             if contact in line:
                 print(line)
                 contact=line
@@ -35,12 +35,12 @@ def replace_phone_contact(contact,new_contact):
     lines = f.readlines()
     f.close()
     f = open(t, 'w',encoding = 'utf-8')
-    for line in lines: 
+    for line in lines:
         if line!=contact:
             f.write(line)
         elif line==contact:
             f.write(f'{new_contact}\n')
-    f.close()           
+    f.close()
 
 def save_phone_number(book):
     """
@@ -65,14 +65,13 @@ def del_phone_number(contact):
     lines = f.readlines()
     f.close()
     f = open(t, 'w',encoding = 'utf-8')
-    for line in lines: 
+    for line in lines:
         if line!=contact:
             f.write(line)
     f.close()
-    
+
 
 
 
 # book=str(input('Введите: '))
 # save_phone_number(book)
-
