@@ -2,14 +2,12 @@ import database as db
 import dbfiles as fl
 import menu
 import os
-from sys import platform
 
-print(platform)
-input()
 if os.path.exists('phonebook.csv') :
     guide = fl.loadcsv('phonebook.csv')
 else :
     guide = []
+
 while True :
     key = db.printtable(guide)
     if key == 0 :
@@ -27,5 +25,8 @@ while True :
     elif key == 6 :
         guide = menu.importdata()
 
+# Создаём backup
+fl.makebackup()
+# Записываем все текущие изменения в файл
 fl.exportcsv('phonebook.csv', guide)
 print('Работа завершена')
