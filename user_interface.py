@@ -127,4 +127,4 @@ def success():
 
 def error():
     print((e.emojize(
-        f'{Fore.RED}:check_mark_button: Такого контакта нет!{Style.RESET_ALL}')))
+        f'{Fore.RED}Такого контакта нет!{Style.RESET_ALL}')))
